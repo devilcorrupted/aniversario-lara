@@ -18,17 +18,59 @@
         .card { background-color: var(--card-dark); border: 2px solid var(--accent-red); border-radius: 20px; padding: 40px; max-width: 600px; width: 100%; text-align: center; box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3); }
         h1 { font-size: 2.5rem; color: var(--bright-red); margin-bottom: 20px; text-shadow: 0 0 10px rgba(255, 30, 30, 0.4); }
         p { font-size: 1.15rem; color: var(--text-light); margin-bottom: 30px; line-height: 1.6; }
-        .btn { display: inline-block; background-color: var(--accent-red); color: var(--text-light); padding: 15px 35px; font-size: 1.1rem; font-weight: bold; text-decoration: none; border-radius: 30px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(139, 0, 0, 0.5); border: 1px solid var(--bright-red); }
+        .btn { display: inline-block; background-color: var(--accent-red); color: var(--text-light); padding: 15px 35px; font-size: 1.1rem; font-weight: bold; text-decoration: none; border-radius: 30px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(139, 0, 0, 0.5); border: 1px solid var(--bright-red); cursor: pointer; }
         .btn:hover { background-color: var(--bright-red); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255, 30, 30, 0.7); }
+        
+        /* Estilo para quando o botão estiver bloqueado */
+        .btn.bloqueado {
+            background-color: #333;
+            border-color: #555;
+            color: #777;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none !important;
+        }
+        #aviso-tempo {
+            color: var(--bright-red);
+            font-size: 0.95rem;
+            margin-top: 15px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div class="card">
-        <h1>surpresa mais esperada pra vc lara maranhense, ate eu to ansioso bosta
-</h1>
-        <p>eu, zukao preparei isso aqui com muito carinho viu, é pra ler tudo se nao eu vou bem ai em codó te bater, é só clicar no botao de baixo aq viu   </p>
-        <!-- AQUI ESTÁ O SEGREDO: Aponta para gostos.html -->
-        <a href="gostos.html" class="btn">Continuar a surpresa ➔</a>
+        <h1>surpresa mais esperada pra vc lara maranhense, ate eu to ansioso bosta</h1>
+        <p>eu, zukao preparei isso aqui com muito carinho viu, é pra ler tudo se nao eu vou bem ai em codó te bater, é só clicar no botao de baixo aq viu</p>
+        
+        <!-- Botão com verificação de data -->
+        <a id="btn-surpresa" href="gostos.html" class="btn">Continuar a surpresa ➔</a>
+        <div id="aviso-tempo"></div>
     </div>
+
+    <script>
+        // Define a data limite: 26 do mês atual às 00:00:00
+        // Podes alterar o mês se necessário (ex: new Date(2026, 8, 26, 0, 0, 0) para setembro, lembrando que o mês no JS começa em 0)
+        const dataLiberacao = new Date(new Date().getFullYear(), new Date().getMonth(), 26, 0, 0, 0);
+        
+        // Se quiseres fixar um mês específico (ex: Outubro = mês 9), podes usar:
+        // const dataLiberacao = new Date(2026, 9, 26, 0, 0, 0);
+
+        const agora = new Date();
+        const botao = document.getElementById('btn-surpresa');
+        const aviso = document.getElementById('aviso-tempo');
+
+        if (agora < dataLiberacao) {
+            // Bloqueia o botão se ainda não for dia 26
+            botao.classList.add('bloqueado');
+            botao.href = "#";
+            aviso.textContent = "🔒 Calma, maranhense! Só vai abrir às 00:00 do dia 26!";
+            
+            botao.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert("Ei! Vai morder a unha aí ansiosa, a surpresa só é liberada dia 26 às 00:00! 🛑❤️");
+            });
+        }
+    </script>
 </body>
 </html>
