@@ -53,6 +53,59 @@
             object-fit: cover;
         }
 
+        /* Estilos exclusivos para o bloco do botão final da cartinha */
+        .cartinha-footer-section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 40px 0 30px 0;
+        }
+        .cartinha-card {
+            background: linear-gradient(145deg, #141414, #1f0505);
+            border: 2px solid var(--accent-red);
+            border-radius: 16px;
+            padding: 30px 25px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+        .cartinha-card h3 {
+            color: var(--bright-red);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .cartinha-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .btn-cartinha-final {
+            display: inline-block;
+            background-color: var(--accent-red);
+            color: var(--text-light);
+            padding: 14px 32px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 35px;
+            border: 2px solid var(--bright-red);
+            box-shadow: 0 0 15px rgba(255, 30, 30, 0.4);
+            transition: all 0.4s ease;
+            animation: pulsar 2s infinite;
+        }
+        .btn-cartinha-final:hover {
+            background-color: var(--bright-red);
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 30, 30, 0.8);
+        }
+        @keyframes pulsar {
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 30, 30, 0.4); }
+            50% { transform: scale(1.03); box-shadow: 0 0 25px rgba(255, 30, 30, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 30, 30, 0.4); }
+        }
+
         .nav-buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
         .btn { display: inline-block; background-color: var(--accent-red); color: var(--text-light); padding: 12px 30px; font-size: 1rem; font-weight: bold; text-decoration: none; border-radius: 30px; transition: all 0.3s ease; border: 1px solid var(--bright-red); }
         .btn:hover { background-color: var(--bright-red); transform: translateY(-2px); }
@@ -79,6 +132,15 @@
         <!-- Foto da Lara com o gato ajustada para o GitHub Pages -->
         <div class="photo-section">
             <img src="/aniversario-lara/larafoto7.png" alt="Lara com o gato">
+        </div>
+
+        <!-- Botão especial direcionando para a cartinha -->
+        <div class="cartinha-footer-section">
+            <div class="cartinha-card">
+                <h3>💌 Uma última coisa...</h3>
+                <p>Preparei uma mensagem especial e secreta para ti. Clica abaixo para ler com calma.</p>
+                <a href="cartinha.html" class="btn-cartinha-final">Ler Cartinha Especial ✨</a>
+            </div>
         </div>
 
         <div class="nav-buttons">
