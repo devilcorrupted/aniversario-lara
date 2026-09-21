@@ -13,101 +13,53 @@
             --text-light: #F5F5F5;
             --text-muted: #A0A0A0;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-black);
-            color: var(--text-light);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            width: 100%;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: var(--bright-red);
-            margin-bottom: 15px;
-            text-shadow: 0 0 15px rgba(255, 30, 30, 0.4);
-        }
-
-        .message-box {
-            background-color: var(--card-dark);
-            border: 1px solid var(--accent-red);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.2);
-        }
-
-        .message-box p {
-            font-size: 1.15rem;
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .photo-card {
-            background-color: var(--card-dark);
-            border: 1px solid var(--accent-red);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .photo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(255, 30, 30, 0.3);
-        }
-
-        .photo-card img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .btn-back {
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-black); color: var(--text-light); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+        .container { max-width: 900px; width: 100%; text-align: center; }
+        h1 { font-size: 2.5rem; color: var(--bright-red); margin-bottom: 15px; text-shadow: 0 0 15px rgba(255, 30, 30, 0.4); }
+        .message-box { background-color: var(--card-dark); border: 1px solid var(--accent-red); border-radius: 16px; padding: 30px; margin-bottom: 40px; box-shadow: 0 8px 25px rgba(139, 0, 0, 0.2); }
+        .message-box p { font-size: 1.15rem; color: var(--text-light); line-height: 1.8; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .photo-card { background-color: var(--card-dark); border: 1px solid var(--accent-red); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .photo-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(255, 30, 30, 0.3); }
+        .photo-card img { width: 100%; height: 280px; object-fit: cover; display: block; }
+        
+        /* Estilos do botão especial de transição para a cartinha */
+        .btn-cartinha-especial {
             display: inline-block;
-            background-color: transparent;
-            color: var(--text-muted);
-            border: 1px solid var(--text-muted);
-            padding: 10px 25px;
-            border-radius: 20px;
+            background-color: var(--accent-red);
+            color: var(--text-light);
+            padding: 14px 32px;
+            font-size: 1.05rem;
+            font-weight: bold;
             text-decoration: none;
-            transition: all 0.3s ease;
+            border-radius: 35px;
+            border: 2px solid var(--bright-red);
+            box-shadow: 0 0 15px rgba(255, 30, 30, 0.4);
+            transition: all 0.4s ease;
+            animation: pulsar 2s infinite;
+        }
+        .btn-cartinha-especial:hover {
+            background-color: var(--bright-red);
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 30, 30, 0.8);
+        }
+        @keyframes pulsar {
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 30, 30, 0.4); }
+            50% { transform: scale(1.03); box-shadow: 0 0 25px rgba(255, 30, 30, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 30, 30, 0.4); }
         }
 
-        .btn-back:hover {
-            color: var(--bright-red);
-            border-color: var(--bright-red);
-        }
+        .nav-buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
+        .btn { display: inline-block; background-color: var(--accent-red); color: var(--text-light); padding: 12px 30px; font-size: 1rem; font-weight: bold; text-decoration: none; border-radius: 30px; transition: all 0.3s ease; border: 1px solid var(--bright-red); }
+        .btn:hover { background-color: var(--bright-red); transform: translateY(-2px); }
+        .btn-back { background-color: transparent; color: var(--text-muted); border: 1px solid var(--text-muted); }
+        .btn-back:hover { color: var(--bright-red); border-color: var(--bright-red); background-color: transparent; }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h1>Lara, você é incrível</h1>
+        <h1>Nossas Memórias</h1>
         
         <div class="message-box">
             <p>
@@ -124,8 +76,10 @@
             <div class="photo-card"><img src="larafoto6.png" alt="Lara"></div>
         </div>
 
-        <a href="index.html" class="btn-back">← Voltar ao início</a>
+        <div class="nav-buttons">
+            <a href="gostos.html" class="btn btn-back">← Voltar</a>
+            <a href="cartinha.html" class="btn-cartinha-especial">Ler Cartinha Especial 💌</a>
+        </div>
     </div>
-
 </body>
 </html>
