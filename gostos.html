@@ -22,12 +22,20 @@
         .reminder-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(255, 30, 30, 0.3); }
         .reminder-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
         
-        /* Efeito de Gradiente misturando azul marinho e amarelo */
+        /* Gradiente animado em movimento */
         .color-gradient {
-            background: linear-gradient(135deg, #1E3A8A 0%, #FACC15 100%);
+            background: linear-gradient(270deg, #2563EB, #FACC15, #1E3A8A);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: bold;
+            animation: gradientMove 4s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .nav-buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
@@ -49,7 +57,7 @@
                 <p>sempre que eu vejo algo sobre o Cristiano ronaldo ou ate mesmo sobre o Kyliegui q vc sabe q eu n gosto, eu lembro de como vc é fanática por ele.</p>
             </div>
             <div class="reminder-card">
-                <p>eu n posso esquecer tambem das cores favoritas né, acho q todo mundo ja sabe q é <span class="color-gradient">azul e amarelo</span>, durrr, <span class="color-gradient">azul marinho</span> ne obvio.</p>
+                <p>eu n posso esquecer tambem das cores favoritas né, acho q todo mundo ja sabe q é <span class="color-gradient">azul e amarelo, durrr, azul marinho ne obvio</span>.</p>
             </div>
         </div>
 
