@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário, Lara! 💛💙</title>
+    <style>
+        :root {
+            --bg-navy: #0B192C;
+            --card-navy: #1E3E62;
+            --accent-yellow: #FFD700;
+            --text-light: #F5F5F5;
+            --text-muted: #B0C4DE;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-navy);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--accent-yellow);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-navy);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .card h2 {
+            color: var(--accent-yellow);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+            padding-bottom: 8px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .time-box {
+            background: rgba(11, 25, 44, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 80px;
+            border: 1px solid var(--accent-yellow);
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-yellow);
+        }
+
+        .time-box label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .message-box {
+            line-height: 1.6;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--accent-yellow);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+
+        .btn-back:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .countdown { flex-wrap: wrap; gap: 10px; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Parabéns, Lara! 🎉</h1>
+        <p class="subtitle">Um site especial para o teu dia (26 de Setembro)</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Contador Regressivo -->
+        <div class="card">
+            <h2>Contagem Regressiva para o Grande Dia</h2>
+            <div class="countdown" id="countdown">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <label>Dias</label>
+                </div>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <label>Horas</label>
+                </div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <label>Minutos</label>
+                </div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <label>Segundos</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensagem de Parabéns -->
+        <div class="card">
+            <h2>Uma Mensagem Especial</h2>
+            <p class="message-box">
+                Lara, desejo-te um dia repleto de alegrias, sorrisos e muitas coisas boas! Que este novo ano de vida venha carregado de conquistas, momentos felizes e muita energia positiva. És uma amiga incrível e mereces o melhor do mundo! 💛💙
+            </p>
+        </div>
+
+    </div>
+
+    <footer>
+        Feito com carinho para a Lara &bull; 2026
+    </footer>
+
+    <script>
+        const targetDate = new Date("September 26, 2026 00:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference < 0) {
+                document.getElementById("countdown").innerHTML = "<h3 style='color: #FFD700; width: 100%; text-align: center;'>É hoje! Feliz Aniversário, Lara! 🎂🎈</h3>";
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
