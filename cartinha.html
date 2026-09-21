@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para a Lara - Carta</title>
+    <style>
+        :root {
+            --bg-black: #0A0A0A;
+            --card-dark: #141414;
+            --accent-red: #8B0000;
+            --bright-red: #FF1E1E;
+            --text-light: #F5F5F5;
+            --text-muted: #A0A0A0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { 
+            background-color: var(--bg-black); 
+            color: var(--text-light); 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            padding: 30px 20px; 
+        }
+        .container { max-width: 750px; width: 100%; text-align: center; }
+
+        /* Estado inicial do botão de abrir carta */
+        #envelope-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        .open-envelope-btn {
+            background-color: var(--accent-red);
+            color: var(--text-light);
+            padding: 16px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: 2px solid var(--bright-red);
+            border-radius: 35px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 30, 30, 0.3);
+            transition: all 0.4s ease;
+        }
+        .open-envelope-btn:hover {
+            background-color: var(--bright-red);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 30, 30, 0.6);
+        }
+        .intro-text {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Caixa da Carta (inicialmente escondida) */
+        .letter-box {
+            display: none;
+            background-color: var(--card-dark);
+            border: 1px solid var(--accent-red);
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+            text-align: left;
+            animation: fadeIn 1s ease forwards;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .letter-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            white-space: pre-line; /* Mantém os parágrafos que escreveste */
+            margin-bottom: 30px;
+        }
+
+        .nav-buttons { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-top: 30px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+        .btn { 
+            display: inline-block; 
+            background-color: var(--accent-red); 
+            color: var(--text-light); 
+            padding: 12px 25px; 
+            font-size: 0.95rem; 
+            font-weight: bold; 
+            text-decoration: none; 
+            border-radius: 30px; 
+            transition: all 0.3s ease; 
+            border: 1px solid var(--bright-red); 
+        }
+        .btn:hover { background-color: var(--bright-red); transform: translateY(-2px); }
+        .btn-back { background-color: transparent; color: var(--text-muted); border: 1px solid var(--text-muted); }
+        .btn-back:hover { color: var(--bright-red); border-color: var(--bright-red); background-color: transparent; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Secção do Botão Inicial (Calma e Foco) -->
+        <div id="envelope-section">
+            <h1 style="color: var(--bright-red); margin-bottom: 10px; font-size: 2.2rem;">Uma mensagem para ti...</h1>
+            <p class="intro-text">Clica abaixo para abrir a cartinha com calma e atenção.</p>
+            <button class="open-envelope-btn" onclick="abrirCarta()">💌 Abrir Cartinha</button>
+        </div>
+
+        <!-- A Carta Revelada -->
+        <div id="letter-box" class="letter-box">
+            <div class="letter-content">feliz aniversário lara.
+
+mesmo depois de todas as nossas brigas, dos momentos de dificuldade e ate mesmo os términos que tivemos, eu nunca deixei de te amar, e nunca vou deixar, afinal eu te prometi que ia te amar pra sempre. A gente já passou por bastante coisa, tivemos momentos bons e dificeis, mas você continua sendo uma pessoa muito especial na minha vida.
+
+quero que vc saiba que, independente de tudo que já aconteceu entre a gente, eu ainda me importo muito com você e quero sempre ver você bem e feliz. você marcou a minha vida de uma forma que eu nunca vou esquecer, e sou grato por todos os momentos que vivemos juntos.
+
+hoje, no seu aniversário, eu só desejo que você seja muito feliz, que consiga realizar seus sonhos e que nunca deixe de ser essa pessoa especial que você, independente se for comigo do seu lado ou não, eu só quero ver você feliz.
+
+talvez as coisas entre nós nem sempre tenham sido fáceis, mas o amor e a consideração que eu tenho por você nunca vai mudar e nem esfriar, eu vou continuar te amando e levando você comigo no coração, porque existem pessoas que mesmo com o tempo e com tudo que acontece, nunca deixam de ser importantes.
+
+feliz aniversário lara. espero que seu dia seja tão especial quanto você é pra mim e pra todos que te amam.</div>
+
+            <div class="nav-buttons">
+                <a href="gostos.html" class="btn btn-back">← Voltar</a>
+                <a href="euteamo.html" class="btn">Próxima Página (100 Línguas) →</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function abrirCarta() {
+            document.getElementById('envelope-section').style.display = 'none';
+            document.getElementById('letter-box').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

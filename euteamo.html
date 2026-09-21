@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para a Lara - Eu Te Amo</title>
+    <style>
+        :root {
+            --bg-black: #0A0A0A;
+            --card-dark: #141414;
+            --accent-red: #8B0000;
+            --bright-red: #FF1E1E;
+            --text-light: #F5F5F5;
+            --text-muted: #A0A0A0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { 
+            background-color: var(--bg-black); 
+            color: var(--text-light); 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 40px 20px; 
+        }
+        .container { max-width: 850px; width: 100%; text-align: center; }
+        
+        h1 { 
+            font-size: 2.3rem; 
+            color: var(--bright-red); 
+            margin-bottom: 10px; 
+            text-shadow: 0 0 15px rgba(255, 30, 30, 0.4); 
+        }
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+        }
+
+        /* Grelha com as línguas */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .lang-card {
+            background-color: var(--card-dark);
+            border: 1px solid rgba(139, 0, 0, 0.5);
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 1rem;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        .lang-card:hover {
+            border-color: var(--bright-red);
+            background-color: #1a0505;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(255, 30, 30, 0.2);
+        }
+
+        /* Caixa da mensagem final do Zukão */
+        .final-message-box {
+            background-color: var(--card-dark);
+            border: 1px solid var(--accent-red);
+            border-radius: 16px;
+            padding: 35px 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .final-message-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            white-space: pre-line;
+        }
+
+        .nav-buttons { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-top: 20px; 
+        }
+        .btn { 
+            display: inline-block; 
+            background-color: var(--accent-red); 
+            color: var(--text-light); 
+            padding: 12px 30px; 
+            font-size: 1rem; 
+            font-weight: bold; 
+            text-decoration: none; 
+            border-radius: 30px; 
+            transition: all 0.3s ease; 
+            border: 1px solid var(--bright-red); 
+        }
+        .btn:hover { background-color: var(--bright-red); transform: translateY(-2px); }
+        .btn-back { background-color: transparent; color: var(--text-muted); border: 1px solid var(--text-muted); }
+        .btn-back:hover { color: var(--bright-red); border-color: var(--bright-red); background-color: transparent; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <h1>Eu te amo em todas as formas</h1>
+        <p class="subtitle">Em qualquer língua, o sentimento é exatamente o mesmo.</p>
+
+        <!-- Lista das línguas -->
+        <div class="languages-grid">
+            <div class="lang-card">Eu te amo</div>
+            <div class="lang-card">I love you</div>
+            <div class="lang-card">Te amo</div>
+            <div class="lang-card">Je t’aime</div>
+            <div class="lang-card">Ti amo</div>
+            <div class="lang-card">Ich liebe dich</div>
+            <div class="lang-card">Ik hou van jou</div>
+            <div class="lang-card">Jag älskar dig</div>
+            <div class="lang-card">Jeg elsker deg</div>
+            <div class="lang-card">Jeg elsker dig</div>
+            <div class="lang-card">Rakastan sinua</div>
+            <div class="lang-card">Ég elska þig</div>
+            <div class="lang-card">Is breá liom tú</div>
+            <div class="lang-card">Rwy’n dy garu di</div>
+            <div class="lang-card">Kocham cię</div>
+            <div class="lang-card">Miluji tě</div>
+            <div class="lang-card">Ľúbim ťa</div>
+            <div class="lang-card">Te iubesc</div>
+            <div class="lang-card">Обичам те</div>
+            <div class="lang-card">Волим те</div>
+            <div class="lang-card">Volim te</div>
+            <div class="lang-card">Ljubim te</div>
+            <div class="lang-card">Те сакам</div>
+            <div class="lang-card">Të dua</div>
+            <div class="lang-card">Σ’ αγαπώ</div>
+            <div class="lang-card">Seni seviyorum</div>
+            <div class="lang-card">Я тебя люблю</div>
+            <div class="lang-card">Я тебе кохаю</div>
+            <div class="lang-card">Aš tave myliu</div>
+            <div class="lang-card">Es tevi mīlu</div>
+            <div class="lang-card">Ma armastan sind</div>
+            <div class="lang-card">Ես քեզ սիրում եմ</div>
+            <div class="lang-card">მიყვარხარ</div>
+            <div class="lang-card">Mən səni sevirəm</div>
+            <div class="lang-card">אני אוהב אותך</div>
+            <div class="lang-card">أنا أحبك</div>
+            <div class="lang-card">دوستت دارم</div>
+            <div class="lang-card">मैं तुमसे प्यार करता हूँ</div>
+            <div class="lang-card">میں تم سے محبت کرتا ہوں</div>
+            <div class="lang-card">আমি তোমাকে ভালোবাসি</div>
+            <div class="lang-card">म तिमीलाई माया गर्छु</div>
+            <div class="lang-card">මම ඔයාට ආදරෙයි</div>
+            <div class="lang-card">我爱你</div>
+            <div class="lang-card">愛してる</div>
+            <div class="lang-card">사랑해</div>
+            <div class="lang-card">ฉันรักคุณ</div>
+            <div class="lang-card">Tôi yêu bạn</div>
+            <div class="lang-card">Aku cinta kamu</div>
+            <div class="lang-card">Saya cintakan awak</div>
+            <div class="lang-card">Mahal kita</div>
+            <div class="lang-card">ငါမင်းကိုချစ်တယ်</div>
+            <div class="lang-card">ខ្ញុំស្រឡាញ់អ្នក</div>
+            <div class="lang-card">ຂ້ອຍຮັກເຈົ້າ</div>
+            <div class="lang-card">Би чамд хайртай</div>
+            <div class="lang-card">Мен сені сүйемін</div>
+            <div class="lang-card">Men seni sevaman</div>
+            <div class="lang-card">Мен сени сүйөм</div>
+            <div class="lang-card">Ман туро дӯст медорам</div>
+            <div class="lang-card">Men seni söýýärin</div>
+            <div class="lang-card">زه تا سره مینه لرم</div>
+            <div class="lang-card">Waan ku jeclahay</div>
+            <div class="lang-card">Nakupenda</div>
+            <div class="lang-card">Ngiyakuthanda</div>
+            <div class="lang-card">Ndiyakuthanda</div>
+            <div class="lang-card">Ninakupenda</div>
+            <div class="lang-card">እወድሃለሁ</div>
+            <div class="lang-card">Tiako ianao</div>
+            <div class="lang-card">Mwen renmen ou</div>
+            <div class="lang-card">Mi luv yuh</div>
+            <div class="lang-card">Nimitztlazohtla</div>
+            <div class="lang-card">Kuyayki</div>
+            <div class="lang-card">Rohayhu</div>
+            <div class="lang-card">איך האָב דיך ליב</div>
+            <div class="lang-card">Ech hunn dech gär</div>
+            <div class="lang-card">Inħobbok</div>
+            <div class="lang-card">Maite zaitut</div>
+            <div class="lang-card">Quérote</div>
+            <div class="lang-card">Mi amas vin</div>
+            <div class="lang-card">Te amo</div>
+            <div class="lang-card">त्वयि स्निह्यामि</div>
+            <div class="lang-card">Ez ji te hez dikim</div>
+            <div class="lang-card">Gihigugma tika</div>
+            <div class="lang-card">Palangga ta ka</div>
+            <div class="lang-card">Aku tresna karo kowe</div>
+            <div class="lang-card">Abdi bogoh ka anjeun</div>
+            <div class="lang-card">Mo nifẹ rẹ</div>
+            <div class="lang-card">A hụrụ m gị n’anya</div>
+            <div class="lang-card">Ina son ka</div>
+            <div class="lang-card">Ek is lief vir jou</div>
+            <div class="lang-card">Ik hâld fan dy</div>
+            <div class="lang-card">T’aimi</div>
+            <div class="lang-card">Io te amo.</div>
+        </div>
+
+        <!-- Mensagem Final do Zukão -->
+        <div class="final-message-box">
+            <div class="final-message-content">eu te amo mais que tudo mesmo depois de tudo e quero que voce saiba disso, ainda me arrependo de todas as coisas erradas que ja fiz e ainda me sinto mal por ter estragado o nosso relacionamento que pra mim era perfeito, mas enfim, eu te amo muito e você e muito importante pra mim, feliz dia que Deus te abençoe e que vc nunca deixe de ser essa pessoa incrivel linda e perfeita q vc é, beijos do zukao!</div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cartinha.html" class="btn btn-back">← Voltar para a Carta</a>
+            <a href="index.html" class="btn">Início 🏠</a>
+        </div>
+
+    </div>
+</body>
+</html>
