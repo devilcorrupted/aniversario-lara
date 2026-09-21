@@ -12,6 +12,8 @@
             --bright-red: #FF1E1E;
             --text-light: #F5F5F5;
             --text-muted: #A0A0A0;
+            --navy-blue: #1E3A8A;
+            --yellow-accent: #FACC15;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: var(--bg-black); color: var(--text-light); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
@@ -21,6 +23,11 @@
         .reminder-card { background-color: var(--card-dark); border: 1px solid var(--accent-red); border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .reminder-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(255, 30, 30, 0.3); }
         .reminder-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+        
+        /* Cores destacadas para as palavras */
+        .color-blue { color: var(--navy-blue); font-weight: bold; }
+        .color-yellow { color: var(--yellow-accent); font-weight: bold; }
+
         .nav-buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
         .btn { display: inline-block; background-color: var(--accent-red); color: var(--text-light); padding: 12px 30px; font-size: 1rem; font-weight: bold; text-decoration: none; border-radius: 30px; transition: all 0.3s ease; border: 1px solid var(--bright-red); }
         .btn:hover { background-color: var(--bright-red); transform: translateY(-2px); }
@@ -40,7 +47,7 @@
                 <p>sempre que eu vejo algo sobre o Cristiano ronaldo ou ate mesmo sobre o Kyliegui q vc sabe q eu n gosto, eu lembro de como vc é fanática por ele.</p>
             </div>
             <div class="reminder-card">
-                <p>eu n posso esquecer tambem das cores favoritas né, acho q todo mundo ja sabe q é azul e amarelo, durrr, azul marinho ne obvio.</p>
+                <p>eu n posso esquecer tambem das cores favoritas né, acho q todo mundo ja sabe q é <span class="color-blue">azul</span> e <span class="color-yellow">amarelo</span>, durrr, <span class="color-blue">azul marinho</span> ne obvio.</p>
             </div>
         </div>
 
