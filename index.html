@@ -48,17 +48,17 @@
         <div id="aviso-tempo"></div>
     </div>
 
+    <!-- Áudio de fundo escondido -->
+    <audio id="bg-music" src="kidabelha.mp3" loop></audio>
+
     <script>
         // Define a data limite: 26 do mês atual às 00:00:00
-        // Podes alterar o mês se necessário (ex: new Date(2026, 8, 26, 0, 0, 0) para setembro, lembrando que o mês no JS começa em 0)
         const dataLiberacao = new Date(new Date().getFullYear(), new Date().getMonth(), 26, 0, 0, 0);
         
-        // Se quiseres fixar um mês específico (ex: Outubro = mês 9), podes usar:
-        // const dataLiberacao = new Date(2026, 9, 26, 0, 0, 0);
-
         const agora = new Date();
         const botao = document.getElementById('btn-surpresa');
         const aviso = document.getElementById('aviso-tempo');
+        const music = document.getElementById('bg-music');
 
         if (agora < dataLiberacao) {
             // Bloqueia o botão se ainda não for dia 26
@@ -69,6 +69,22 @@
             botao.addEventListener('click', function(e) {
                 e.preventDefault();
                 alert("calmai loca, vai ficar esperando ate seu aniversario pq eu sou é mal");
+            });
+        } else {
+            // Se já for o dia liberado, intercepta o clique para iniciar a música e prosseguir
+            botao.addEventListener('click', function(e) {
+                e.preventDefault();
+                music.volume = 0.5;
+                music.play().then(() => {
+                    localStorage.setItem('playMusic', 'true');
+                }).catch(err => {
+                    console.log("Erro ao iniciar áudio:", err);
+                });
+
+                // Pequeno atraso para o navegador processar o play antes de mudar de página
+                setTimeout(() => {
+                    window.location.href = "gostos.html";
+                }, 200);
             });
         }
     </script>
