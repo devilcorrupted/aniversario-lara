@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para a Lara - Início</title>
+    <title>Para a Lara - Especial de Aniversário</title>
     <style>
         :root {
             --bg-black: #0A0A0A;
@@ -14,78 +14,283 @@
             --text-muted: #A0A0A0;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--bg-black); color: var(--text-light); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
-        .card { background-color: var(--card-dark); border: 2px solid var(--accent-red); border-radius: 20px; padding: 40px; max-width: 600px; width: 100%; text-align: center; box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3); }
-        h1 { font-size: 2.5rem; color: var(--bright-red); margin-bottom: 20px; text-shadow: 0 0 10px rgba(255, 30, 30, 0.4); }
-        p { font-size: 1.15rem; color: var(--text-light); margin-bottom: 30px; line-height: 1.6; }
-        .btn { display: inline-block; background-color: var(--accent-red); color: var(--text-light); padding: 15px 35px; font-size: 1.1rem; font-weight: bold; text-decoration: none; border-radius: 30px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(139, 0, 0, 0.5); border: 1px solid var(--bright-red); cursor: pointer; }
-        .btn:hover { background-color: var(--bright-red); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255, 30, 30, 0.7); }
+        body { 
+            background-color: var(--bg-black); 
+            color: var(--text-light); 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            padding: 30px 20px; 
+        }
+        .container { max-width: 900px; width: 100%; text-align: center; }
+
+        /* Controlo de Secções (SPA) */
+        .section { display: none; width: 100%; }
+        .section.active { display: block; animation: fadeIn 0.8s ease forwards; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilos gerais reutilizados */
+        .card { background-color: var(--card-dark); border: 2px solid var(--accent-red); border-radius: 20px; padding: 40px; margin: 0 auto; max-width: 600px; text-align: center; box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3); }
+        h1 { font-size: 2.3rem; color: var(--bright-red); margin-bottom: 20px; text-shadow: 0 0 10px rgba(255, 30, 30, 0.4); }
+        p { font-size: 1.1rem; color: var(--text-light); margin-bottom: 25px; line-height: 1.6; }
         
-        /* Estilo para quando o botão estiver bloqueado */
-        .btn.bloqueado {
-            background-color: #333;
-            border-color: #555;
-            color: #777;
-            cursor: not-allowed;
-            box-shadow: none;
-            transform: none !important;
-        }
-        #aviso-tempo {
-            color: var(--bright-red);
-            font-size: 0.95rem;
-            margin-top: 15px;
+        .btn { display: inline-block; background-color: var(--accent-red); color: var(--text-light); padding: 12px 30px; font-size: 1rem; font-weight: bold; text-decoration: none; border-radius: 30px; transition: all 0.3s ease; border: 1px solid var(--bright-red); cursor: pointer; }
+        .btn:hover { background-color: var(--bright-red); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 30, 30, 0.5); }
+        .btn-back { background-color: transparent; color: var(--text-muted); border: 1px solid var(--text-muted); }
+        .btn-back:hover { color: var(--bright-red); border-color: var(--bright-red); background-color: transparent; }
+        
+        .nav-buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; }
+
+        /* Bloqueio de data */
+        .btn.bloqueado { background-color: #333; border-color: #555; color: #777; cursor: not-allowed; box-shadow: none; transform: none !important; }
+        #aviso-tempo { color: var(--bright-red); font-size: 0.95rem; margin-top: 15px; font-weight: bold; }
+
+        /* Gostos */
+        .reminders-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 30px; text-align: left; }
+        .reminder-card { background-color: var(--card-dark); border: 1px solid var(--accent-red); border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .reminder-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+        .color-gradient { background: linear-gradient(270deg, #2563EB, #FACC15, #1E3A8A); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; animation: gradientMove 4s ease infinite; }
+        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .photo-section { margin: 25px 0; display: flex; justify-content: center; }
+        .photo-section img { max-width: 280px; width: 100%; border-radius: 12px; border: 2px solid var(--accent-red); box-shadow: 0 4px 20px rgba(255, 30, 30, 0.2); object-fit: cover; }
+
+        /* Memorial / Fotos */
+        .message-box { background-color: var(--card-dark); border: 1px solid var(--accent-red); border-radius: 16px; padding: 30px; margin-bottom: 40px; box-shadow: 0 8px 25px rgba(139, 0, 0, 0.2); text-align: left; }
+        .message-box p { font-size: 1.15rem; color: var(--text-light); line-height: 1.8; margin-bottom: 0; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .photo-card { background-color: var(--card-dark); border: 1px solid var(--accent-red); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .photo-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(255, 30, 30, 0.3); }
+        .photo-card img { width: 100%; height: 280px; object-fit: cover; display: block; }
+
+        /* Botão especial de transição para a cartinha */
+        .btn-cartinha-especial {
+            display: inline-block;
+            background-color: var(--accent-red);
+            color: var(--text-light);
+            padding: 14px 32px;
+            font-size: 1.05rem;
             font-weight: bold;
+            text-decoration: none;
+            border-radius: 35px;
+            border: 2px solid var(--bright-red);
+            box-shadow: 0 0 15px rgba(255, 30, 30, 0.4);
+            transition: all 0.4s ease;
+            animation: pulsar 2s infinite;
+            cursor: pointer;
         }
+        .btn-cartinha-especial:hover {
+            background-color: var(--bright-red);
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 30, 30, 0.8);
+        }
+        @keyframes pulsar {
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 30, 30, 0.4); }
+            50% { transform: scale(1.03); box-shadow: 0 0 25px rgba(255, 30, 30, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 30, 30, 0.4); }
+        }
+
+        /* Cartinha */
+        .letter-box { background-color: var(--card-dark); border: 1px solid var(--accent-red); border-radius: 16px; padding: 40px 30px; text-align: left; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7); }
+        .letter-content { font-size: 1.05rem; line-height: 1.8; white-space: pre-line; margin-bottom: 20px; }
+        
+        /* 100 Línguas */
+        .languages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 30px; max-height: 350px; overflow-y: auto; padding-right: 10px; }
+        .lang-card { background-color: var(--card-dark); border: 1px solid rgba(139, 0, 0, 0.5); border-radius: 8px; padding: 10px; font-size: 0.95rem; text-align: center; transition: all 0.3s ease; }
+        .lang-card:hover { border-color: var(--bright-red); background-color: #1a0505; }
+        .final-message-box { background-color: var(--card-dark); border: 1px solid var(--accent-red); border-radius: 16px; padding: 25px; text-align: left; margin-bottom: 25px; }
+
+        /* Botão flutuante de música */
+        #music-btn { position: fixed; bottom: 20px; right: 20px; background-color: var(--card-dark); color: var(--bright-red); border: 2px solid var(--accent-red); border-radius: 50px; padding: 12px 20px; cursor: pointer; z-index: 1000; box-shadow: 0 4px 20px rgba(255, 30, 30, 0.4); font-weight: bold; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>surpresa mais esperada pra vc lara maranhense, ate eu to ansioso bosta</h1>
-        <p>eu, zukao preparei isso aqui com muito carinho viu, é pra ler tudo se nao eu vou bem ai em codó te bater, é só clicar no botao de baixo aq viu</p>
+
+    <div class="container">
         
-        <!-- Botão com verificação de data -->
-        <a id="btn-surpresa" href="gostos.html" class="btn">Continuar a surpresa ➔</a>
-        <div id="aviso-tempo"></div>
+        <!-- SECÇÃO 1: INÍCIO -->
+        <div id="sec-inicio" class="section active">
+            <div class="card">
+                <h1>surpresa mais esperada pra vc lara maranhense, ate eu to ansioso bosta</h1>
+                <p>eu, zukao preparei isso aqui com muito carinho viu, é pra ler tudo se nao eu vou bem ai em codó te bater, é só clicar no botao de baixo aq viu</p>
+                <button id="btn-surpresa" class="btn" onclick="tentarAvancar()">Continuar a surpresa ➔</button>
+                <div id="aviso-tempo"></div>
+            </div>
+        </div>
+
+        <!-- SECÇÃO 2: GOSTOS -->
+        <div id="sec-gostos" class="section">
+            <h1 style="color: var(--bright-red); margin-bottom: 25px;">Coisas que me lembram você</h1>
+            <div class="reminders-grid">
+                <div class="reminder-card">
+                    <p>lara, toda vez q me falam sobre frank ocean, crystal castles ou lana del rey, eu sempre lembro de você.</p>
+                </div>
+                <div class="reminder-card">
+                    <p>sempre que eu vejo algo sobre o Cristiano ronaldo ou ate mesmo sobre o Kyliegui q vc sabe q eu n gosto, eu lembro de como vc é fanática por ele.</p>
+                </div>
+                <div class="reminder-card">
+                    <p>eu n posso esquecer tambem das cores favoritas né, acho q todo mundo ja sabe q é <span class="color-gradient">azul e amarelo, durrr, azul marinho ne obvio</span>.</p>
+                </div>
+            </div>
+            <div class="photo-section">
+                <img src="larafoto7.png" alt="Lara com o gato">
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-back" onclick="mudarSecao('sec-inicio')">← Voltar</button>
+                <button class="btn" onclick="mudarSecao('sec-memorial')">Ver Memórias ➔</button>
+            </div>
+        </div>
+
+        <!-- SECÇÃO 3: MEMÓRIAS (FOTOS) -->
+        <div id="sec-memorial" class="section">
+            <h1 style="color: var(--bright-red);">Nossas Memórias</h1>
+            
+            <div class="message-box">
+                <p>
+                    Não existem palavras suficientes para descrever o quanto você é especial. Cada detalhe seu, a sua maneira de ser e a sua luz tornam os dias muito melhores. Você é perfeita exatamente do jeito que é, única e insubstituível. Que este dia seja apenas o início de um novo ciclo repleto de coisas boas! ❤️
+                </p>
+            </div>
+
+            <div class="gallery">
+                <div class="photo-card"><img src="larafoto1.png" alt="Lara"></div>
+                <div class="photo-card"><img src="larafoto2.png" alt="Lara"></div>
+                <div class="photo-card"><img src="larafoto3.png" alt="Lara"></div>
+                <div class="photo-card"><img src="larafoto4.png" alt="Lara"></div>
+                <div class="photo-card"><img src="larafoto5.png" alt="Lara"></div>
+                <div class="photo-card"><img src="larafoto6.png" alt="Lara"></div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-back" onclick="mudarSecao('sec-gostos')">← Voltar</button>
+                <button class="btn-cartinha-especial" onclick="mudarSecao('sec-cartinha')">Ler Cartinha Especial 💌</button>
+            </div>
+        </div>
+
+        <!-- SECÇÃO 4: CARTINHA -->
+        <div id="sec-cartinha" class="section">
+            <div id="envelope-section" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                <h1 style="color: var(--bright-red);">Uma mensagem para ti...</h1>
+                <p style="color: var(--text-muted);">Clica abaixo para abrir a cartinha com calma e atenção.</p>
+                <button class="btn" onclick="abrirCarta()" style="padding: 16px 35px; font-size: 1.2rem;">💌 Abrir Cartinha</button>
+                <div style="width: 100%; text-align: left; margin-top: 20px;">
+                    <button class="btn btn-back" onclick="mudarSecao('sec-memorial')">← Voltar</button>
+                </div>
+            </div>
+
+            <div id="letter-box" class="letter-box" style="display: none;">
+                <div class="letter-content">feliz aniversário lara.
+
+mesmo depois de todas as nossas brigas, dos momentos de dificuldade e ate mesmo os términos que tivemos, eu nunca deixei de te amar, e nunca vou deixar, afinal eu te prometi que ia te amar pra sempre. A gente já passou por bastante coisa, tivemos momentos bons e dificeis, mas você continua sendo uma pessoa muito especial na minha vida.
+
+quero que vc saiba que, independente de tudo que já aconteceu entre a gente, eu ainda me importo muito com você e quero sempre ver você bem e feliz. você marcou a minha vida de uma forma que eu nunca vou esquecer, e sou grato por todos os momentos que vivemos juntos.
+
+hoje, no seu aniversário, eu só desejo que você seja muito feliz, que consiga realizar seus sonhos e que nunca deixe de ser essa pessoa especial que você, independente se for comigo do seu lado ou não, eu só quero ver você feliz.
+
+talvez as coisas entre nós nem sempre tenham sido fáceis, mas o amor e a consideração que eu tenho por você nunca vai mudar e nem esfriar, eu vou continuar te amando e levando você comigo no coração, porque existem pessoas que mesmo com o tempo e com tudo que acontece, nunca deixam de ser importantes.
+
+feliz aniversário lara. espero que seu dia seja tão especial quanto você é pra mim e pra todos que te amam.</div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-back" onclick="mudarSecao('sec-memorial')">← Voltar</button>
+                    <button class="btn" onclick="mudarSecao('sec-euteamo')">Próxima Página (100 Línguas) →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECÇÃO 5: EU TE AMO (100 LÍNGUAS) -->
+        <div id="sec-euteamo" class="section">
+            <h1 style="color: var(--bright-red);">Eu te amo em todas as formas</h1>
+            <p style="color: var(--text-muted); margin-bottom: 25px;">Em qualquer língua, o sentimento é exatamente o mesmo.</p>
+
+            <div class="languages-grid">
+                <div class="lang-card">Eu te amo</div><div class="lang-card">I love you</div><div class="lang-card">Te amo</div><div class="lang-card">Je t’aime</div><div class="lang-card">Ti amo</div><div class="lang-card">Ich liebe dich</div><div class="lang-card">Ik hou van jou</div><div class="lang-card">Jag älskar dig</div><div class="lang-card">Jeg elsker deg</div><div class="lang-card">Jeg elsker dig</div><div class="lang-card">Rakastan sinua</div><div class="lang-card">Ég elska þig</div><div class="lang-card">Is breá liom tú</div><div class="lang-card">Rwy’n dy garu di</div><div class="lang-card">Kocham cię</div><div class="lang-card">Miluji tě</div><div class="lang-card">Ľúbim ťa</div><div class="lang-card">Te iubesc</div><div class="lang-card">Обичам те</div><div class="lang-card">Волим te</div><div class="lang-card">Volim te</div><div class="lang-card">Ljubim te</div><div class="lang-card">Те сакам</div><div class="lang-card">Të dua</div><div class="lang-card">Σ’ αγαπώ</div><div class="lang-card">Seni seviyorum</div><div class="lang-card">Я тебя люблю</div><div class="lang-card">Я тебе кохаю</div><div class="lang-card">Aš tave myliu</div><div class="lang-card">Es tevi mīlu</div><div class="lang-card">Ma armastan sind</div><div class="lang-card">Ես քեզ սիրում եմ</div><div class="lang-card">მიყვარხარ</div><div class="lang-card">Mən səni sevirəm</div><div class="lang-card">אני אוהב אותך</div><div class="lang-card">أنا أحبك</div><div class="lang-card">دوستت دارم</div><div class="lang-card">मैं तुमसे प्यार करता हूँ</div><div class="lang-card">میں تم سے محبت کرتا ہوں</div><div class="lang-card">আমি তোমাকে ভালোবাসি</div><div class="lang-card">म तिमीलाई माया गर्छु</div><div class="lang-card">මම ඔයාට ආදරෙයි</div><div class="lang-card">我爱你</div><div class="lang-card">愛してる</div><div class="lang-card">사랑해</div><div class="lang-card">ฉันรักคุณ</div><div class="lang-card">Tôi yêu bạn</div><div class="lang-card">Aku cinta kamu</div><div class="lang-card">Saya cintakan awak</div><div class="lang-card">Mahal kita</div><div class="lang-card">ငါမင်းကိုချစ်တယ်</div><div class="lang-card">ខ្ញុំស្រឡាញ់អ្នក</div><div class="lang-card">ຂ້ອຍຮັກເຈົ້າ</div><div class="lang-card">Би чамд хайртай</div><div class="lang-card">Мен сені сүйемін</div><div class="lang-card">Men seni sevaman</div><div class="lang-card">Мен сени сүйөм</div><div class="lang-card">Ман туро дӯст медорам</div><div class="lang-card">Men seni söýýärin</div><div class="lang-card">زه تا سره مینه lرم</div><div class="lang-card">Waan ku jeclahay</div><div class="lang-card">Nakupenda</div><div class="lang-card">Ngiyakuthanda</div><div class="lang-card">Ndiyakuthanda</div><div class="lang-card">Ninakupenda</div><div class="lang-card">እወድሃለሁ</div><div class="lang-card">Tiako ianao</div><div class="lang-card">Mwen renmen ou</div><div class="lang-card">Mi luv yuh</div><div class="lang-card">Nimitztlazohtla</div><div class="lang-card">Kuyayki</div><div class="lang-card">Rohayhu</div><div class="lang-card">איך האָב דיך ליב</div><div class="lang-card">Ech hunn dech gär</div><div class="lang-card">Inħobbok</div><div class="lang-card">Maite zaitut</div><div class="lang-card">Quérote</div><div class="lang-card">Mi amas vin</div><div class="lang-card">Te amo</div><div class="lang-card">त्वयि स्निह्यामि</div><div class="lang-card">Ez ji te hez dikim</div><div class="lang-card">Gihigugma tika</div><div class="lang-card">Palangga ta ka</div><div class="lang-card">Aku tresna karo kowe</div><div class="lang-card">Abdi bogoh ka anjeun</div><div class="lang-card">Mo nifẹ rẹ</div><div class="lang-card">A hụrụ m gị n’anya</div><div class="lang-card">Ina son ka</div><div class="lang-card">Ek is lief vir jou</div><div class="lang-card">Ik hâld fan dy</div><div class="lang-card">T’aimi</div><div class="lang-card">Io te amo.</div>
+            </div>
+
+            <div class="final-message-box">
+                <p style="font-size: 1.05rem; line-height: 1.8;">eu te amo mais que tudo mesmo depois de tudo e quero que voce saiba disso, ainda me arrependo de todas as coisas erradas que ja fiz e ainda me sinto mal por ter estragado o nosso relacionamento que pra mim era perfeito, mas enfim, eu te amo muito e você e muito importante pra mim, feliz dia que Deus te abençoe e que vc nunca deixe de ser essa pessoa incrivel linda e perfeita q vc é, beijos do zukao!</p>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-back" onclick="mudarSecao('sec-cartinha')">← Voltar para a Carta</button>
+                <button class="btn" onclick="mudarSecao('sec-inicio')">Início 🏠</button>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Áudio de fundo escondido -->
-    <audio id="bg-music" src="kidabelha.mp3" loop></audio>
+    <!-- ÁUDIO DE FUNDO CONTÍNUO -->
+    <audio id="background-music" src="kidabelha.mp3" loop></audio>
+
+    <button id="music-btn" onclick="toggleMusic()">
+        🎵 Tocar Kid Abelha
+    </button>
 
     <script>
-        // Define a data limite: 26 do mês atual às 00:00:00
+        // Função para alternar entre as secções sem recarregar a página
+        function mudarSecao(idSecao) {
+            document.querySelectorAll('.section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            document.getElementById(idSecao).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function abrirCarta() {
+            document.getElementById('envelope-section').style.display = 'none';
+            document.getElementById('letter-box').style.display = 'block';
+        }
+
+        // Validação da Data (Dia 26)
         const dataLiberacao = new Date(new Date().getFullYear(), new Date().getMonth(), 26, 0, 0, 0);
-        
         const agora = new Date();
-        const botao = document.getElementById('btn-surpresa');
-        const aviso = document.getElementById('aviso-tempo');
-        const music = document.getElementById('bg-music');
+        const botaoSurpresa = document.getElementById('btn-surpresa');
+        const avisoTempo = document.getElementById('aviso-tempo');
 
         if (agora < dataLiberacao) {
-            // Bloqueia o botão se ainda não for dia 26
-            botao.classList.add('bloqueado');
-            botao.href = "#";
-            aviso.textContent = " calma ai tambem ne lara só vai abrir às 00:00 do dia 26 pq eu sou é mal e vc vai ver só no seu dia especial";
-            
-            botao.addEventListener('click', function(e) {
-                e.preventDefault();
-                alert("calmai loca, vai ficar esperando ate seu aniversario pq eu sou é mal");
-            });
-        } else {
-            // Se já for o dia liberado, intercepta o clique para iniciar a música e prosseguir
-            botao.addEventListener('click', function(e) {
-                e.preventDefault();
-                music.volume = 0.5;
-                music.play().then(() => {
-                    localStorage.setItem('playMusic', 'true');
-                }).catch(err => {
-                    console.log("Erro ao iniciar áudio:", err);
-                });
+            botaoSurpresa.classList.add('bloqueado');
+            avisoTempo.textContent = "calma ai tambem ne lara só vai abrir às 00:00 do dia 26 pq eu sou é mal e vc vai ver só no seu dia especial";
+        }
 
-                // Pequeno atraso para o navegador processar o play antes de mudar de página
-                setTimeout(() => {
-                    window.location.href = "gostos.html";
-                }, 200);
-            });
+        function tentarAvancar() {
+            if (agora < dataLiberacao) {
+                alert("calmai loca, vai ficar esperando ate seu aniversario pq eu sou é mal");
+                return;
+            }
+
+            // Inicia a música ao avançar
+            const music = document.getElementById('background-music');
+            music.volume = 0.5;
+            music.play().then(() => {
+                document.getElementById('music-btn').textContent = "🔇 Pausar Música";
+                document.getElementById('music-btn').style.backgroundColor = "var(--accent-red)";
+                document.getElementById('music-btn').style.color = "var(--text-light)";
+            }).catch(e => console.log("Autoplay impedido:", e));
+
+            mudarSecao('sec-gostos');
+        }
+
+        // Controlo do botão flutuante de música
+        const music = document.getElementById('background-music');
+        const btnMusic = document.getElementById('music-btn');
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play().then(() => {
+                    btnMusic.textContent = "🔇 Pausar Música";
+                    btnMusic.style.backgroundColor = "var(--accent-red)";
+                    btnMusic.style.color = "var(--text-light)";
+                });
+            } else {
+                music.pause();
+                btnMusic.textContent = "🎵 Tocar Kid Abelha";
+                btnMusic.style.backgroundColor = "var(--card-dark)";
+                btnMusic.style.color = "var(--bright-red)";
+            }
         }
     </script>
 </body>
